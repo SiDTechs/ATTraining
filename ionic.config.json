@@ -1,0 +1,7 @@
+{
+  "name": "ATTraining",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

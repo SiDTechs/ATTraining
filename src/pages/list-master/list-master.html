@@ -1,0 +1,63 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'LIST_MASTER_TITLE' | translate }}</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addItem()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <!-- <ion-slides class="slides-height" pager="true" dir="{{dir}}" (ionSlideWillChange)="onSlideChangeStart($event)"> -->
+  <ion-slides pager="true" dir="{{dir}}" (ionSlideWillChange)="onSlideChangeStart($event)">
+    <ion-slide *ngFor="let slide of slider">
+      <img [src]="slide.image" class="slide-image" />
+      <h2 class="slide-title" [innerHTML]="slide.title"></h2>
+
+
+
+
+      <p read-more more-text="VIEW MORE..." less-text="VIEW LESS" ellipsis=“…” limit=“50” [innerHTML]="slide.description"></p>
+      
+
+
+
+
+
+      <!-- <p [innerHTML]="slide.description"></p> -->
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/img/all-tech-icon/assimilate_logo.png" class="last-slide-image" />
+      <h2 class="slide-title">{{ 'READY_TO_LEARN' | translate }}</h2>
+      <button ion-button icon-end large clear (click)="startApp()">
+        {{ 'TUTORIAL_CONTINUE_BUTTON' | translate }}
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of currentItems">
+      <button ion-item (click)="openItem(item)">
+        <ion-avatar item-start>
+          <img [src]="item.profilePic" />
+        </ion-avatar>
+        <h2>{{item.name}}</h2>
+        <p>{{item.about}}</p>
+        <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>
+      </button>
+
+      <ion-item-options>
+        <button ion-button color="danger" (click)="deleteItem(item)">
+          {{ 'DELETE_BUTTON' | translate }}
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
